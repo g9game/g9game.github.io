@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!-- saved from url=(0153)https://bcgame-project.github.io/verify/classicdice_new.html?s=99697ccc58cedd1d31687f9bb4b5771f5c36a26168960f9fb5cd0583ea1cabe1&c=wsE0dQiYhCGDTefXbr&n=84 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ClassicDice verify</title>
+  <link rel="stylesheet" href="./ClassicDice verify_files/main.css">
+  <link rel="stylesheet" href="./ClassicDice verify_files/bootstrap.min.css">
+  <script async="" src="./ClassicDice verify_files/analytics.js"></script><script src="./ClassicDice verify_files/GoogleAnalytics.js"></script>
+  <script src="./ClassicDice verify_files/vue.min.js"></script>
+  <script src="./ClassicDice verify_files/crypto-js.js"></script>
+  <script src="./ClassicDice verify_files/tools.js"></script>
+  <script src="./ClassicDice verify_files/utils.js"></script>
+</head>
+<body>
+  
+<div id="app" class="main"><h1 class="text-center pb-5">ClassicDice verify</h1> <hr> <form class="py-5"><h2 class="text-center">Input</h2> <div class="form-group"><input placeholder="Client Seed" class="form-control"></div> <div class="form-group"><input placeholder="Server Seed" class="form-control"></div> <div class="form-group"><input placeholder="Server Seed Hash" class="form-control"></div> <div class="form-group"><input placeholder="Nonce" class="form-control"></div></form> <hr> <form class="py-5"><h2 class="text-center pb-5">Output</h2> <div class="form-group"><label>sha256(server_seed)</label> <input readonly="readonly" class="form-control"></div> <div class="form-group"><label>hmac_sha256(client_seed:nonce, server_seed)</label> <input readonly="readonly" class="form-control"></div></form> <hr> <form class="py-5"><h2 class="text-center pb-5">Results</h2> <div class="form-group"><label>Final Result</label> <input readonly="readonly" class="form-control"></div></form></div>
+
+<script>
+let qs = tools.queryString();
+var app = new Vue({
+  el: '#app',
+  data: {
+    /** inputs */
+    client_seed: qs.c || '',
+    server_seed: qs.s || '',
+    server_seed_hash: qs.h || '',
+    nonce: parseInt(qs.n) || 0,
+  },
+  computed: {
+    result_hash () {
+      return this.hmac_sha256(this.client_seed + ':' + this.nonce, this.server_seed);
+    },
+    result_hash_list () {
+      return String(this.result_hash)
+    },
+    results () {
+      let list = this.result_hash_list
+      let res = {
+        dec: [],
+        hex: []
+      }
+      for (let i = 0; i < list.length; i += 2) {
+        let dext = list[i] + list[i + 1]
+        let hext = parseInt(dext, 16)
+        res.dec.push(dext)
+        res.hex.push(hext)
+      }
+      return res
+    },
+    numResult () {
+      return slideWindowNumber(this.result_hash_list, 10001) / 100;
+    }
+  },
+  watch: {
+    'this.numResult'() {
+      ga('send', 'event', 'ClassicDice', 'verify', this.server_seed, {metric0: this.client_seed, metric1: this.nonce})
+    }
+  },
+  created () {
+    console.log(this.result_hash_list)
+  },
+  methods: {
+    hmac_sha256 (msg, salt) {
+      return CryptoJS.HmacSHA256(msg, salt);
+    },
+    sha512 (value) {
+      return CryptoJS.SHA512(CryptoJS.enc.Utf8.parse(value));
+    },
+    sha256 (value) {
+      return CryptoJS.SHA256(CryptoJS.enc.Utf8.parse(value));
+    },
+    parseInt (value) {
+      return window.parseInt(value, 16);
+    },
+  }
+});
+</script>
+</body></html>

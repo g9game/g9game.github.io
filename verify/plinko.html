@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- saved from url=(0210)https://bcgame-project.github.io/verify/plinko.html?s=319f33f9e7c7f1be7784b7eacee9a9d0b4c74391faf50608107bd632d86ef2a2&c=4dpJiCskPNXm0SQc&h=af8a1dbc475faa0b70cbd3cfd1cc26f8d263a5c59b96f4550005563b2d38eb01&n=364 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Plinko verify</title>
+  <link rel="stylesheet" href="./Plinko verify_files/main.css">
+  <link rel="stylesheet" href="./Plinko verify_files/bootstrap.min.css">
+  <script async="" src="./Plinko verify_files/analytics.js"></script><script src="./Plinko verify_files/GoogleAnalytics.js"></script>
+  <script src="./Plinko verify_files/vue.min.js"></script>
+  <script src="./Plinko verify_files/crypto-js.js"></script>
+  <script src="./Plinko verify_files/tools.js"></script>
+</head>
+<body>
+<div id="app" class="main"><h1 class="text-center pb-5">Plinko verify</h1> <hr> <form class="py-5"><h2 class="text-center">Input</h2> <div class="form-group"><input placeholder="Client Seed" class="form-control"></div> <div class="form-group"><input placeholder="Server Seed" class="form-control"></div> <div class="form-group"><input placeholder="Nonce" class="form-control"></div></form> <hr> <form class="py-5"><h2 class="text-center pb-5">Output</h2> <div class="form-group"><label>sha256(server_seed)</label> <input readonly="readonly" class="form-control"></div> <div class="form-group"><label>hmac_sha512(client_seed:nonce, server_seed)</label> <input readonly="readonly" class="form-control"></div> <hr> <h5>Convert each set of four bytes into a number</h5> <div class="form-group" style="overflow-x: auto;"><table class="table table-sm table-bordered" style="width: 1200px;"><thead><tr><th>#</th> <td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td>32</td><td>33</td><td>34</td><td>35</td><td>36</td><td>37</td><td>38</td><td>39</td><td>40</td><td>41</td><td>42</td><td>43</td><td>44</td><td>45</td><td>46</td><td>47</td><td>48</td><td>49</td><td>50</td><td>51</td><td>52</td><td>53</td><td>54</td><td>55</td><td>56</td><td>57</td><td>58</td><td>59</td><td>60</td><td>61</td><td>62</td><td>63</td></tr></thead> <tbody><tr><th>Hex</th> <td>91</td><td>a0</td><td>3a</td><td>e8</td><td>05</td><td>13</td><td>a4</td><td>2b</td><td>1e</td><td>a2</td><td>69</td><td>7f</td><td>8f</td><td>6c</td><td>97</td><td>32</td><td>31</td><td>9d</td><td>cb</td><td>a0</td><td>9e</td><td>40</td><td>05</td><td>1f</td><td>79</td><td>68</td><td>39</td><td>2a</td><td>63</td><td>ef</td><td>42</td><td>28</td><td>64</td><td>2b</td><td>e2</td><td>01</td><td>d0</td><td>2f</td><td>d9</td><td>a1</td><td>17</td><td>05</td><td>0b</td><td>9f</td><td>c8</td><td>57</td><td>ea</td><td>f4</td><td>44</td><td>82</td><td>ba</td><td>f5</td><td>2f</td><td>77</td><td>27</td><td>96</td><td>7b</td><td>6f</td><td>ba</td><td>a1</td><td>34</td><td>3d</td><td>0e</td><td>8e</td></tr> <tr><th>Base 10</th> <td>145</td><td>160</td><td>58</td><td>232</td><td>5</td><td>19</td><td>164</td><td>43</td><td>30</td><td>162</td><td>105</td><td>127</td><td>143</td><td>108</td><td>151</td><td>50</td><td>49</td><td>157</td><td>203</td><td>160</td><td>158</td><td>64</td><td>5</td><td>31</td><td>121</td><td>104</td><td>57</td><td>42</td><td>99</td><td>239</td><td>66</td><td>40</td><td>100</td><td>43</td><td>226</td><td>1</td><td>208</td><td>47</td><td>217</td><td>161</td><td>23</td><td>5</td><td>11</td><td>159</td><td>200</td><td>87</td><td>234</td><td>244</td><td>68</td><td>130</td><td>186</td><td>245</td><td>47</td><td>119</td><td>39</td><td>150</td><td>123</td><td>111</td><td>186</td><td>161</td><td>52</td><td>61</td><td>14</td><td>142</td></tr></tbody></table></div> <hr> <h5>Each set of 4 bytes is turned into a number in the range [0, 1). Only the first calculation is displayed for conciceness.</h5> <div>(145/256^1) + (160/256^2) + (58/256^3) + (232/256^4)</div> <div style="white-space: nowrap;">= (0.56640625) + (0.00244140625) + (0.0000034570693969726562) + (3.3760443329811096e-8)</div> <div>= (0.5688511673361063)</div></form> <form class="py-5"><h2 class="text-center pb-5">Results</h2> <div class="form-group"><table class="table table-sm table-bordered"><thead><tr><th>Pin #</th> <th>Number</th> <th>Number*2</th> <th>Direction</th></tr></thead> <tbody><tr><td>1</td> <td>0.5688511673361063</td> <td>1.1377023346722126</td> <td>Right</td></tr><tr><td>2</td> <td>0.01983095216564834</td> <td>0.03966190433129668</td> <td>Left</td></tr><tr><td>3</td> <td>0.11966571188531816</td> <td>0.23933142377063632</td> <td>Left</td></tr><tr><td>4</td> <td>0.5602507111616433</td> <td>1.1205014223232865</td> <td>Right</td></tr><tr><td>5</td> <td>0.1938140168786049</td> <td>0.3876280337572098</td> <td>Left</td></tr><tr><td>6</td> <td>0.6181643677409738</td> <td>1.2363287354819477</td> <td>Right</td></tr><tr><td>7</td> <td>0.47424657130613923</td> <td>0.9484931426122785</td> <td>Left</td></tr><tr><td>8</td> <td>0.3903695438057184</td> <td>0.7807390876114368</td> <td>Left</td></tr><tr><td>9</td> <td>0.3912945988122374</td> <td>0.7825891976244748</td> <td>Left</td></tr><tr><td>10</td> <td>0.8132301347795874</td> <td>1.6264602695591748</td> <td>Right</td></tr><tr><td>11</td> <td>0.08992073661647737</td> <td>0.17984147323295474</td> <td>Left</td></tr><tr><td>12</td> <td>0.782591518945992</td> <td>1.565183037891984</td> <td>Right</td></tr><tr><td>13</td> <td>0.2676197860855609</td> <td>0.5352395721711218</td> <td>Left</td></tr><tr><td>14</td> <td>0.1854119054041803</td> <td>0.3708238108083606</td> <td>Left</td></tr><tr><td>15</td> <td>0.48217359953559935</td> <td>0.9643471990711987</td> <td>Left</td></tr><tr><td>16</td> <td>0.20405665365979075</td> <td>0.4081133073195815</td> <td>Left</td></tr></tbody></table></div></form></div>
+<script>
+  let qs = tools.queryString();
+  var app = new Vue({
+    el: '#app',
+    data: {
+      /** inputs */
+      client_seed: qs.c || '',
+      server_seed: qs.s || '',
+      server_seed_hash: qs.h || '',
+      nonce: parseInt(qs.n) || 0,
+    },
+    computed: {
+      result_hash () {
+        return this.hmac_sha512(this.client_seed + ":" + this.nonce, this.server_seed);
+      },
+      result_hash_list () {
+        return String(this.result_hash).match(/.{2}/g);
+      },
+      results () {
+        let res = [];
+        let hexArr = this.result_hash_list;
+        for (let i=0, l=hexArr.length; i<l; i+=4) {
+          let num = this.parseInt(hexArr[i])/Math.pow(256, 1) + this.parseInt(hexArr[i+1])/Math.pow(256,2) + this.parseInt(hexArr[i+2])/Math.pow(256,3) + this.parseInt(hexArr[i+3])/Math.pow(256,4)
+          res.push(num);
+        }
+        return res;
+      }
+    },
+    watch: {
+      'this.results'() {
+        ga('send', 'event', 'Plinko', 'verify', this.server_seed, {metric0: this.client_seed, metric1: this.nonce})
+      }
+    },
+    methods: {
+      round (index) {
+        return this.client_seed + ':' + this.nonce + ':' + index;
+      },
+      sha256 (value) {
+        return CryptoJS.SHA256(CryptoJS.enc.Utf8.parse(value));
+      },
+      sha512 (value) {
+        return CryptoJS.SHA512(CryptoJS.enc.Utf8.parse(value));
+      },
+      hmac_sha512 (msg, salt) {
+        return CryptoJS.HmacSHA512(msg, salt);
+      },
+      parseInt (value) {
+        return window.parseInt(value, 16);
+      }
+    }
+  });
+</script>
+
+</body></html>

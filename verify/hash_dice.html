@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!-- saved from url=(0160)https://bcgame-project.github.io/verify/hashdice.html?s=b6a7687e43d8e5878a9de45c7ad03f8641f2a3b61eb6da13e4c6e95c3c46775e&c=EHEZJ1G2p2HzF34KTS4AD6RWWfY0wpB&n=143 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>HashDice verify</title>
+  <link rel="stylesheet" href="./HashDice_files/main.css">
+  <link rel="stylesheet" href="./HashDice_files/bootstrap.min.css">
+  <script async="" src="./HashDice_files/analytics.js"></script><script src="./HashDice_files/GoogleAnalytics.js"></script>
+  <script src="./HashDice_files/vue.min.js"></script>
+  <script src="./HashDice_files/crypto-js.js"></script>
+  <script src="./HashDice_files/tools.js"></script>
+</head>
+<body>
+  
+<div id="app" class="main"><h1 class="text-center pb-5">HashDice verify</h1> <hr> <form class="py-5"><h2 class="text-center">Input</h2> <div class="form-group"><input placeholder="Client Seed" class="form-control"></div> <div class="form-group"><input placeholder="Server Seed" class="form-control"></div> <div class="form-group"><input placeholder="Server Seed Hash" class="form-control"></div> <div class="form-group"><input placeholder="Nonce" class="form-control"></div></form> <hr> <form class="py-5"><h2 class="text-center pb-5">Output</h2> <div class="form-group"><label>sha256(server_seed)</label> <input readonly="readonly" class="form-control"></div> <div class="form-group"><label>hmac_sha512(client_seed:nonce, server_seed)</label> <input readonly="readonly" class="form-control"></div></form> <hr> <form class="py-5"><h2 class="text-center pb-5">Results</h2> <h5>Final Result</h5> <h5>hmac_sha512(client_seed:nonce, server_seed)</h5> <div class="form-group" style="overflow-x: auto;"><table class="table table-sm table-bordered"><tbody><tr><td class="">2a</td><td class="">fa</td><td class="">b8</td><td class="">6b</td><td class="text-muted">dd</td><td class="text-muted">f2</td><td class="text-muted">8f</td><td class="text-muted">f3</td><td class="text-muted">11</td><td class="text-muted">5b</td><td class="text-muted">06</td><td class="text-muted">8e</td><td class="text-muted">5f</td><td class="text-muted">55</td><td class="text-muted">a9</td><td class="text-muted">a7</td><td class="text-muted">60</td><td class="text-muted">f2</td><td class="text-muted">f6</td><td class="text-muted">33</td><td class="text-muted">7b</td><td class="text-muted">40</td><td class="text-muted">7b</td><td class="text-muted">83</td><td class="text-muted">56</td><td class="text-muted">0a</td><td class="text-muted">da</td><td class="text-muted">44</td><td class="text-muted">16</td><td class="text-muted">29</td><td class="text-muted">ac</td><td class="text-muted">16</td><td class="text-muted">e8</td><td class="text-muted">7f</td><td class="text-muted">9a</td><td class="text-muted">d0</td><td class="text-muted">09</td><td class="text-muted">eb</td><td class="text-muted">86</td><td class="text-muted">3f</td><td class="text-muted">68</td><td class="text-muted">35</td><td class="text-muted">26</td><td class="text-muted">7a</td><td class="text-muted">8d</td><td class="text-muted">42</td><td class="text-muted">e5</td><td class="text-muted">d8</td><td class="text-muted">00</td><td class="text-muted">ae</td><td class="text-muted">49</td><td class="text-muted">ca</td><td class="text-muted">76</td><td class="text-muted">d9</td><td class="text-muted">9f</td><td class="text-muted">eb</td><td class="text-muted">07</td><td class="text-muted">37</td><td class="text-muted">49</td><td class="text-muted">71</td><td class="text-muted">0f</td><td class="text-muted">08</td><td class="text-muted">36</td><td class="text-muted">cb</td></tr> <tr><td class="">42</td><td class="">250</td><td class="">184</td><td class="">107</td><td class="text-muted">221</td><td class="text-muted">242</td><td class="text-muted">143</td><td class="text-muted">243</td><td class="text-muted">17</td><td class="text-muted">91</td><td class="text-muted">6</td><td class="text-muted">142</td><td class="text-muted">95</td><td class="text-muted">85</td><td class="text-muted">169</td><td class="text-muted">167</td><td class="text-muted">96</td><td class="text-muted">242</td><td class="text-muted">246</td><td class="text-muted">51</td><td class="text-muted">123</td><td class="text-muted">64</td><td class="text-muted">123</td><td class="text-muted">131</td><td class="text-muted">86</td><td class="text-muted">10</td><td class="text-muted">218</td><td class="text-muted">68</td><td class="text-muted">22</td><td class="text-muted">41</td><td class="text-muted">172</td><td class="text-muted">22</td><td class="text-muted">232</td><td class="text-muted">127</td><td class="text-muted">154</td><td class="text-muted">208</td><td class="text-muted">9</td><td class="text-muted">235</td><td class="text-muted">134</td><td class="text-muted">63</td><td class="text-muted">104</td><td class="text-muted">53</td><td class="text-muted">38</td><td class="text-muted">122</td><td class="text-muted">141</td><td class="text-muted">66</td><td class="text-muted">229</td><td class="text-muted">216</td><td class="text-muted">0</td><td class="text-muted">174</td><td class="text-muted">73</td><td class="text-muted">202</td><td class="text-muted">118</td><td class="text-muted">217</td><td class="text-muted">159</td><td class="text-muted">235</td><td class="text-muted">7</td><td class="text-muted">55</td><td class="text-muted">73</td><td class="text-muted">113</td><td class="text-muted">15</td><td class="text-muted">8</td><td class="text-muted">54</td><td class="text-muted">203</td></tr></tbody></table></div> <h5>Bytes to Number</h5> <div class="form-group"><input placeholder="Result" readonly="readonly" class="form-control"></div></form></div>
+
+<script>
+let qs = tools.queryString();
+var app = new Vue({
+  el: '#app',
+  data: {
+    /** inputs */
+    client_seed: qs.c || '',
+    server_seed: qs.s || '',
+    server_seed_hash: qs.h || '',
+    nonce: parseInt(qs.n) || 0,
+  },
+  computed: {
+    result_hash () {
+      return this.hmac_sha512(this.client_seed + ':' + this.nonce, this.server_seed);
+    },
+    result_hash_list () {
+      return String(this.result_hash)
+    },
+    results () {
+      let list = this.result_hash_list
+      let res = {
+        dec: [],
+        hex: []
+      }
+      for (let i = 0; i < list.length; i += 2) {
+        let dext = list[i] + list[i + 1]
+        let hext = parseInt(dext, 16)
+        res.dec.push(dext)  
+        res.hex.push(hext)
+      }
+      return res
+    },
+    numResult () {
+        var index = 0;
+        do {
+            var lucky = parseInt(this.result_hash_list.substr(index, 5), 16);
+            index += 5;
+        } while (lucky >= 1000000);
+        return lucky % 100000;
+    }
+  },
+  watch: {
+    'this.numResult'() {
+      ga('send', 'event', 'HashDice', 'verify', this.server_seed, {metric0: this.client_seed, metric1: this.nonce})
+    }
+  },
+  created () {
+    console.log(this.result_hash_list)
+  },
+  methods: {
+    hmac_sha512 (msg, salt) {
+      return CryptoJS.HmacSHA512(msg, salt);
+    },
+    sha512 (value) {
+      return CryptoJS.SHA512(CryptoJS.enc.Utf8.parse(value));
+    },
+    sha256 (value) {
+      return CryptoJS.SHA256(CryptoJS.enc.Utf8.parse(value));
+    },
+    parseInt (value) {
+      return window.parseInt(value, 16);
+    },
+  }
+});
+</script>
+</body></html>

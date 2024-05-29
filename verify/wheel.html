@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!-- saved from url=(0226)https://bcgame-project.github.io/verify/wheel.html?s=2ea5e3f780cf702ec346ec16e1336ad7c2a5234861aed50962e054c93b8851d8&c=E5Ap8Ekmxfiy1T5ym&h=bf12b00bfb893ebe7397bf659dc9d4e4c042ec8c2a0375de6dc68ac525059680&n=102&t=20&r=Low&he=1 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Wheel verify</title>
+  <link rel="stylesheet" href="./Wheel verify_files/main.css">
+  <link rel="stylesheet" href="./Wheel verify_files/bootstrap.min.css">
+  <script async="" src="./Wheel verify_files/analytics.js"></script><script src="./Wheel verify_files/GoogleAnalytics.js"></script>
+  <script src="./Wheel verify_files/vue.min.js"></script>
+  <script src="./Wheel verify_files/crypto-js.js"></script>
+  <script src="./Wheel verify_files/tools.js"></script>
+</head>
+<body>
+  
+<div id="app" class="main"><h1 class="text-center pb-5">Wheel verify</h1> <hr> <form class="py-5"><h2 class="text-center">Input</h2> <div class="form-group"><input placeholder="Client Seed" class="form-control"></div> <div class="form-group"><input placeholder="Server Seed" class="form-control"></div> <div class="form-group"><input placeholder="Nonce" class="form-control"></div> <div class="form-group"><select class="form-control"><option>Low</option> <option>Medium</option> <option>High</option></select></div> <div class="form-group"><select class="form-control"><option>10</option> <option>20</option> <option>30</option> <option>40</option> <option>50</option></select></div></form> <hr> <form class="py-5"><h2 class="text-center pb-5">Output</h2> <div class="form-group"><label>sha256(server_seed)</label> <input readonly="readonly" class="form-control"></div> <div class="form-group"><label>hmac_sha256(client_seed:nonce, server_seed)</label> <input readonly="readonly" class="form-control"></div></form> <hr> <form class="py-5"><h2 class="text-center pb-5">Results</h2> <h5>Final Result</h5> <div class="form-group" style="overflow-x: auto;"><table class="table table-sm table-bordered"><tbody><tr><td class="">0</td><td class="">1</td><td class="">2</td><td class="">3</td><td class="">4</td><td class="">5</td><td class="">6</td><td class="">7</td><td class="">8</td><td class="">9</td><td class="">10</td><td class="">11</td><td class="">12</td><td class="">13</td><td class="">14</td><td class="bg-success">15</td><td class="">16</td><td class="">17</td><td class="">18</td><td class="">19</td></tr> <tr><td class="">1.5</td><td class="">1.2</td><td class="">1.2</td><td class="">1.2</td><td class="">0</td><td class="">1.2</td><td class="">1.2</td><td class="">1.2</td><td class="">1.2</td><td class="">0</td><td class="">1.5</td><td class="">1.2</td><td class="">1.2</td><td class="">1.2</td><td class="">0</td><td class="bg-success">1.2</td><td class="">1.2</td><td class="">1.2</td><td class="">1.2</td><td class="">0</td></tr></tbody></table></div> <h5>hmac_sha256(client_seed:nonce, server_seed)</h5> <div class="form-group" style="overflow-x: auto;"><table class="table table-sm table-bordered"><tbody><tr><td class="">cb</td><td class="">15</td><td class="">6b</td><td class="">04</td><td class="text-muted">33</td><td class="text-muted">6d</td><td class="text-muted">3a</td><td class="text-muted">e4</td><td class="text-muted">32</td><td class="text-muted">28</td><td class="text-muted">8b</td><td class="text-muted">a1</td><td class="text-muted">97</td><td class="text-muted">b2</td><td class="text-muted">83</td><td class="text-muted">c9</td><td class="text-muted">25</td><td class="text-muted">cc</td><td class="text-muted">67</td><td class="text-muted">59</td><td class="text-muted">f6</td><td class="text-muted">d2</td><td class="text-muted">5a</td><td class="text-muted">e5</td><td class="text-muted">f9</td><td class="text-muted">4d</td><td class="text-muted">11</td><td class="text-muted">5c</td><td class="text-muted">21</td><td class="text-muted">46</td><td class="text-muted">3c</td><td class="text-muted">4d</td></tr> <tr><td class="">203</td><td class="">21</td><td class="">107</td><td class="">4</td><td class="text-muted">51</td><td class="text-muted">109</td><td class="text-muted">58</td><td class="text-muted">228</td><td class="text-muted">50</td><td class="text-muted">40</td><td class="text-muted">139</td><td class="text-muted">161</td><td class="text-muted">151</td><td class="text-muted">178</td><td class="text-muted">131</td><td class="text-muted">201</td><td class="text-muted">37</td><td class="text-muted">204</td><td class="text-muted">103</td><td class="text-muted">89</td><td class="text-muted">246</td><td class="text-muted">210</td><td class="text-muted">90</td><td class="text-muted">229</td><td class="text-muted">249</td><td class="text-muted">77</td><td class="text-muted">17</td><td class="text-muted">92</td><td class="text-muted">33</td><td class="text-muted">70</td><td class="text-muted">60</td><td class="text-muted">77</td></tr></tbody></table></div> <h5>Bytes to Number</h5> <div class="form-group">
+      (203, 21, 107, 4) -&gt; [0, ... 19] = <span class="text-success">15</span> <div><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span> 0.792968750&nbsp;&nbsp;&nbsp;&nbsp;</span><span>(203 / (256 ^ 1))</span></div> <div><span>+&nbsp;&nbsp;&nbsp;&nbsp;</span><span>0.000320435&nbsp;&nbsp;&nbsp;&nbsp;</span><span>(21 / (256 ^ 2))</span></div> <div><span>+&nbsp;&nbsp;&nbsp;&nbsp;</span><span>0.000006378&nbsp;&nbsp;&nbsp;&nbsp;</span><span>(107 / (256 ^ 3))</span></div> <div><span>+&nbsp;&nbsp;&nbsp;&nbsp;</span><span>0.000000001&nbsp;&nbsp;&nbsp;&nbsp;</span><span>(4 / (256 ^ 4))</span></div> <div><span>=&nbsp;&nbsp;&nbsp;&nbsp;</span><span>0.793295563&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>(* 20)</div> <div><span>=&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="text-success">15.865911260</span></div></div></form></div>
+
+<script>
+let qs = tools.queryString();
+const payouts = [
+      {segment:10, risk: 'Low', payouts: [1.5,1.2,1.2,1.2,0,1.2,1.2,1.2,1.2,0]},
+      {segment:20, risk: 'Low', payouts: [1.5,1.2,1.2,1.2,0,1.2,1.2,1.2,1.2,0,1.5,1.2,1.2,1.2,0,1.2,1.2,1.2,1.2,0]},
+      {segment:30, risk: 'Low', payouts: [1.5,1.2,1.2,1.2,0,1.2,1.2,1.2,1.2,0,1.5,1.2,1.2,1.2,0,1.2,1.2,1.2,1.2,0,1.5,1.2,1.2,1.2,0,1.2,1.2,1.2,1.2,0]},
+      {segment:40, risk: 'Low', payouts: [1.5,1.2,1.2,1.2,0,1.2,1.2,1.2,1.2,0,1.5,1.2,1.2,1.2,0,1.2,1.2,1.2,1.2,0,1.5,1.2,1.2,1.2,0,1.2,1.2,1.2,1.2,0,1.5,1.2,1.2,1.2,0,1.2,1.2,1.2,1.2,0]},
+      {segment:50, risk: 'Low', payouts: [1.5,1.2,1.2,1.2,0,1.2,1.2,1.2,1.2,0,1.5,1.2,1.2,1.2,0,1.2,1.2,1.2,1.2,0,1.5,1.2,1.2,1.2,0,1.2,1.2,1.2,1.2,0,1.5,1.2,1.2,1.2,0,1.2,1.2,1.2,1.2,0,1.5,1.2,1.2,1.2,0,1.2,1.2,1.2,1.2,0]},
+      {segment:10, risk: 'Medium', payouts: [0,1.9,0,1.5,0,2,0,1.5,0,3]},
+      {segment:20, risk: 'Medium', payouts: [1.5,0,2,0,2,0,2,0,1.5,0,3,0,1.8,0,2,0,2,0,2,0]},
+      {segment:30, risk: 'Medium', payouts: [1.5,0,1.5,0,2,0,1.5,0,2,0,2,0,1.5,0,3,0,1.5,0,2,0,2,0,1.7,0,4,0,1.5,0,2,0]},
+      {segment:40, risk: 'Medium', payouts: [2,0,3,0,2,0,1.5,0,3,0,1.5,0,1.5,0,2,0,1.5,0,3,0,1.5,0,2,0,2,0,1.6,0,2,0,1.5,0,3,0,1.5,0,2,0,1.5,0]},
+      {segment:50, risk: 'Medium', payouts: [2,0,1.5,0,2,0,1.5,0,3,0,1.5,0,1.5,0,2,0,1.5,0,3,0,1.5,0,2,0,1.5,0,2,0,2,0,1.5,0,3,0,1.5,0,2,0,1.5,0,1.5,0,5,0,1.5,0,2,0,1.5,0]},
+      {segment:10, risk: 'High', payouts: [0,0,0,0,0,0,0,0,0,9.9]},
+      {segment:20, risk: 'High', payouts: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,19.8]},
+      {segment:30, risk: 'High', payouts: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,29.7]},
+      {segment:40, risk: 'High', payouts: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,39.6]},
+      {segment:50, risk: 'High', payouts: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,49.5]}];
+
+const payouts96 = [
+      {segment:10, risk: 'Low', payouts: [1.4, 1.1, 1.1, 1.1, 0, 1.1, 1.1, 1.1, 1.1, 0]},
+      {segment:20, risk: 'Low', payouts: [1.4, 1.1, 1.1, 1.1, 0, 1.1, 1.1, 1.1, 1.1, 0, 1.4, 1.1, 1.1, 1.1, 0, 1.1, 1.1, 1.1, 1.1, 0]},
+      {segment:30, risk: 'Low', payouts: [1.4, 1.1, 1.1, 1.1, 0, 1.1, 1.1, 1.1, 1.1, 0, 1.4, 1.1, 1.1, 1.1, 0, 1.1, 1.1, 1.1, 1.1, 0, 1.4, 1.1, 1.1, 1.1, 0, 1.1, 1.1, 1.1, 1.1, 0]},
+      {segment:40, risk: 'Low', payouts: [1.4, 1.1, 1.1, 1.1, 0, 1.1, 1.1, 1.1, 1.1, 0, 1.4, 1.1, 1.1, 1.1, 0, 1.1, 1.1, 1.1, 1.1, 0, 1.4, 1.1, 1.1, 1.1, 0, 1.1, 1.1, 1.1, 1.1, 0, 1.4, 1.1, 1.1, 1.1, 0, 1.1, 1.1,
+      1.1, 1.1, 0,]},
+      {segment:50, risk: 'Low', payouts: [1.4, 1.1, 1.1, 1.1, 0, 1.1, 1.1, 1.1, 1.1, 0, 1.4, 1.1, 1.1, 1.1, 0, 1.1, 1.1, 1.1, 1.1, 0, 1.4, 1.1, 1.1, 1.1, 0, 1.1, 1.1, 1.1, 1.1, 0, 1.4, 1.1, 1.1, 1.1, 0, 1.1, 1.1,
+      1.1, 1.1, 0, 1.4, 1.1, 1.1, 1.1, 0, 1.1, 1.1, 1.1, 1.1, 0,]},
+      {segment:10, risk: 'Medium', payouts: [0, 1.8, 0, 1.4, 0, 1.9, 0, 1.4, 0, 2.9]},
+      {segment:20, risk: 'Medium', payouts: [1.4, 0, 1.9, 0, 1.9, 0, 1.9, 0, 1.4, 0, 2.9, 0, 1.7, 0, 1.9, 0, 1.9, 0, 1.9, 0]},
+      {segment:30, risk: 'Medium', payouts: [1.4, 0, 1.4, 0, 1.9, 0, 1.4, 0, 1.9, 0, 1.9, 0, 1.4, 0, 2.9, 0, 1.4, 0, 1.9, 0, 1.9, 0, 1.6, 0, 3.8, 0, 1.4, 0, 1.9, 0]},
+      {segment:40, risk: 'Medium', payouts: [1.9, 0, 2.9, 0, 1.9, 0, 1.4, 0, 2.9, 0, 1.4, 0, 1.4, 0, 1.9, 0, 1.4, 0, 2.9, 0, 1.4, 0, 1.9, 0, 1.9, 0, 1.5, 0, 1.9, 0, 1.4, 0, 2.9, 0, 1.4, 0, 1.9, 0, 1.4, 0]},
+      {segment:50, risk: 'Medium', payouts: [1.9, 0, 1.4, 0, 1.9, 0, 1.4, 0, 2.9, 0, 1.4, 0, 1.4, 0, 1.9, 0, 1.4, 0, 2.9, 0, 1.4, 0, 1.9, 0, 1.4, 0, 1.9, 0, 1.9, 0, 1.4, 0, 2.9, 0, 1.4, 0, 1.9, 0, 1.4, 0, 1.4, 0, 4.8,
+      0, 1.4, 0, 1.9, 0, 1.4, 0,]},
+      {segment:10, risk: 'High', payouts: [0,0,0,0,0,0,0,0,0,9.6]},
+      {segment:20, risk: 'High', payouts: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,19.2]},
+      {segment:30, risk: 'High', payouts: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,28.8]},
+      {segment:40, risk: 'High', payouts: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,38.4]},
+      {segment:50, risk: 'High', payouts: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,48]}];
+var app = new Vue({
+  el: '#app',
+  data: {
+    /** inputs */
+    client_seed: qs.c || '',
+    server_seed: qs.s || '',
+    server_seed_hash: qs.h || '',
+    nonce: parseInt(qs.n) || 0,
+    risk: qs.r || 'Low',
+    segments: qs.t || 10,
+    version: qs.version || 1,
+    payout: qs.he === '4' ? payouts96 : payouts,
+  },
+  computed: {
+    result_hash () {
+      return this.hmac_sha256(this.client_seed + ":" + this.nonce, this.server_seed);
+    },
+    result_hash_list () {
+      return String(this.result_hash)
+    },
+    final_result () {
+      return this.payout.find(item => {
+        return (item.segment === Number(this.segments) && item.risk === this.risk)
+      }).payouts
+    },
+    results () {
+      let list = this.result_hash_list
+      let res = {
+        dec: [],
+        hex: []
+      }
+      for (let i = 0; i < list.length; i += 2) {
+        let dext = list[i] + list[i + 1]
+        let hext = parseInt(dext, 16)
+        res.dec.push(dext)
+        res.hex.push(hext)
+      }
+      return res
+    },
+    numResult () {
+      let num = 0
+      let list = this.results.hex
+      for (let i = 0; i < 4; i++) {
+        num += list[i] / Math.pow(256, (i + 1))
+      }
+      return num.toFixed(9)
+    }
+  },
+  watch: {
+    'this.results'() {
+      ga('send', 'event', 'Wheel', 'verify', this.server_seed, {metric0: this.client_seed, metric1: this.nonce})
+    }
+  },
+  created () {
+    console.log(this.result_hash_list)
+  },
+  methods: {
+    hmac_sha256 (msg, salt) {
+      return CryptoJS.HmacSHA256(msg, salt);
+    },
+    sha256 (value) {
+      return CryptoJS.SHA256(CryptoJS.enc.Utf8.parse(value));
+    },
+    sha512 (value) {
+      return CryptoJS.SHA512(CryptoJS.enc.Utf8.parse(value));
+    },
+    parseInt (value) {
+      return window.parseInt(value, 16);
+    },
+  }
+});
+</script>
+</body></html>
