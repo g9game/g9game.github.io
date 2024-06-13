@@ -1,21 +1,58 @@
 <!DOCTYPE html>
-<!-- saved from url=(0161)https://bcgame-project.github.io/verify/limbo.html?s=fcdac3c74fa72c2e63a67ddd2041f415f089b46fcfc79a90009dfbd4165ea471&c=0Hdj7acG6XynspFfyc2Xp83xszJCEiQ&he=1&n=14 -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>ClassicDice verify</title>
   <link rel="stylesheet" href="./lib/main.css">
-  <link rel="stylesheet" href="./lib/bootstrap.min.css">
-  <script async="" src="./lib/analytics.js"></script><script src="./lib/GoogleAnalytics.js"></script>
+  <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+  <script src="./lib/GoogleAnalytics.js"></script>
   <script src="./lib/vue.min.js"></script>
   <script src="./lib/crypto-js.js"></script>
   <script src="./lib/tools.js"></script>
 </head>
 <body>
   
-<div id="app" class="main"><h1 class="text-center pb-5">Limbo verify</h1> <hr> <form class="py-5"><h2 class="text-center">Input</h2> <div class="form-group"><input placeholder="Client Seed" class="form-control"></div> <div class="form-group"><input placeholder="Server Seed" class="form-control"></div> <div class="form-group"><input placeholder="Server Seed Hash" class="form-control"></div> <div class="form-group"><input placeholder="Nonce" class="form-control"></div></form> <hr> <form class="py-5"><h2 class="text-center pb-5">Output</h2> <div class="form-group"><label>sha256(server_seed)</label> <input readonly="readonly" class="form-control"></div> <div class="form-group"><label>hmac_sha256(client_seed:nonce, server_seed)</label> <input readonly="readonly" class="form-control"></div></form> <hr> <form class="py-5"><h2 class="text-center pb-5">Results</h2> <h5>Final Result</h5> <h5>hmac_sha256(client_seed:nonce, server_seed)</h5> <input readonly="readonly" class="form-control"></form></div>
-
+<div id="app" class="main">
+  <h1 class="text-center pb-5">Limbo verify</h1> 
+  <hr>
+  <form class="py-5">
+    <h2 class="text-center">Input</h2>
+    <div class="form-group">
+      <input :value="client_seed" @change="client_seed = $event.target.value" class="form-control" placeholder="Client Seed">
+    </div>
+    <div class="form-group">
+      <input :value="server_seed" @change="server_seed = $event.target.value" class="form-control" placeholder="Server Seed">
+    </div>
+    <div class="form-group">
+      <input :value="server_seed_hash" @change="server_seed_hash = $event.target.value" class="form-control" placeholder="Server Seed Hash">
+    </div>
+    <div class="form-group">
+      <input :value="nonce" @change="nonce = $event.target.value" class="form-control" placeholder="Nonce">
+    </div>
+  </form>
+  <hr>
+  <form class="py-5">
+    <h2 class="text-center pb-5">Output</h2>
+    <div class="form-group">
+      <label>sha256(server_seed)</label>
+      <input class="form-control" readonly :value="sha256(server_seed)">
+    </div>
+    <div class="form-group">
+      <label>hmac_sha256(client_seed:nonce, server_seed)</label>
+      <input class="form-control" readonly :value="result_hash">
+    </div>
+  </form>
+    <hr>
+  <form class="py-5">
+    <h2 class="text-center pb-5">Results</h2>
+    <h5>Final Result</h5>
+    <h5>hmac_sha256(client_seed:nonce, server_seed)</h5>
+    <input class="form-control" readonly :value="gameResult">
+  </form>
+</div>
+</body>
 <script>
 let qs = tools.queryString();
 var app = new Vue({
@@ -25,7 +62,6 @@ var app = new Vue({
     client_seed: qs.c || '',
     server_seed: qs.s || '',
     server_seed_hash: qs.h || '',
-    house_edge: qs.he || '1',
     nonce: parseInt(qs.n) || 0,
   },
   computed: {
@@ -41,7 +77,7 @@ var app = new Vue({
       seed = seed.slice(0, nBits / 4);
       const r = parseInt(seed, 16);
       let X = r / Math.pow(2, nBits);
-      X = (100 - (Number(this.house_edge) || 1)) / (1 - X);
+      X = 99 / (1 - X);
       const result = Math.floor(X);
       return this.server_seed ? Math.max(1, result / 100) : '';
     }
@@ -70,4 +106,4 @@ var app = new Vue({
   }
 });
 </script>
-</body></html>
+</html>

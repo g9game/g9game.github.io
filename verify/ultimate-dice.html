@@ -1,22 +1,79 @@
 <!DOCTYPE html>
-<!-- saved from url=(0158)https://bcgame-project.github.io/verify/ultimatedice_new.html?s=d3c2bc1b37b26a92919e63f87396446606e40575cf0a9ce0164e8808293678f6&c=mfBHhyWYPjMeCTPpeBHs0B&n=27 -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>UltimateDice verify</title>
   <link rel="stylesheet" href="./lib/main.css">
-  <link rel="stylesheet" href="./lib/bootstrap.min.css">
-  <script async="" src="./lib/analytics.js"></script><script src="./lib/GoogleAnalytics.js"></script>
+  <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+  <script src="./lib/GoogleAnalytics.js"></script>
   <script src="./lib/vue.min.js"></script>
   <script src="./lib/crypto-js.js"></script>
   <script src="./lib/tools.js"></script>
-  <script src="./lib/utils.js"></script>
 </head>
 <body>
   
-<div id="app" class="main"><h1 class="text-center pb-5">UltimateDice verify</h1> <hr> <form class="py-5"><h2 class="text-center">Input</h2> <div class="form-group"><input placeholder="Client Seed" class="form-control"></div> <div class="form-group"><input placeholder="Server Seed" class="form-control"></div> <div class="form-group"><input placeholder="Server Seed Hash" class="form-control"></div> <div class="form-group"><input placeholder="Nonce" class="form-control"></div></form> <hr> <form class="py-5"><h2 class="text-center pb-5">Output</h2> <div class="form-group"><label>sha256(server_seed)</label> <input readonly="readonly" class="form-control"></div> <div class="form-group"><label>hmac_sha256(client_seed:nonce, server_seed)</label> <input readonly="readonly" class="form-control"></div></form> <hr> <form class="py-5"><h2 class="text-center pb-5">Results</h2> <div class="form-group"><label>Final Result</label> <input readonly="readonly" class="form-control"></div></form></div>
-
+<div id="app" class="main">
+  <h1 class="text-center pb-5">UltimateDice verify</h1> 
+  <hr>
+  <form class="py-5">
+    <h2 class="text-center">Input</h2>
+    <div class="form-group">
+      <input :value="client_seed" @change="client_seed = $event.target.value" class="form-control" placeholder="Client Seed">
+    </div>
+    <div class="form-group">
+      <input :value="server_seed" @change="server_seed = $event.target.value" class="form-control" placeholder="Server Seed">
+    </div>
+    <div class="form-group">
+      <input :value="server_seed_hash" @change="server_seed_hash = $event.target.value" class="form-control" placeholder="Server Seed Hash">
+    </div>
+    <div class="form-group">
+      <input :value="nonce" @change="nonce = $event.target.value" class="form-control" placeholder="Nonce">
+    </div>
+  </form>
+  <hr>
+  <form class="py-5">
+    <h2 class="text-center pb-5">Output</h2>
+    <div class="form-group">
+      <label>sha256(server_seed)</label>
+      <input class="form-control" readonly :value="sha256(server_seed)">
+    </div>
+    <div class="form-group">
+      <label>hmac_sha256(client_seed:nonce, server_seed)</label>
+      <input class="form-control" readonly :value="result_hash">
+    </div>
+  </form>
+    <hr>
+  <form class="py-5">
+    <h2 class="text-center pb-5">Results</h2>
+    <h5>Final Result</h5>
+    <h5>hmac_sha256(client_seed:nonce, server_seed)</h5>
+    <div class="form-group" style="overflow-x: auto;">
+      <table class="table table-sm table-bordered">
+        <tbody>
+          <tr>
+            <td v-for="(item, index) in results.dec" :key="index" :class="{'text-muted': index > 3}">{{ item }}</td>
+          </tr>
+          <tr>
+            <td v-for="(item, index) in results.hex" :key="index" :class="{'text-muted': index > 3}">{{ item }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h5>Bytes to Number</h5>
+    <div class="form-group">
+      ({{results.hex[0] + ', ' + results.hex[1] + ', ' + results.hex[2] + ', ' + results.hex[3]}}) -> [0, ... 4] = <span class="text-success">{{Math.floor(numResult * 10000)}}</span>
+      <div><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span> {{Number(results.hex[0] / 256).toFixed(9)}}&nbsp;&nbsp;&nbsp;&nbsp;</span><span>({{results.hex[0]}} / (256 ^ 1))</span></div>
+      <div><span>+&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{{Number(results.hex[1] / (256 * 256)).toFixed(9)}}&nbsp;&nbsp;&nbsp;&nbsp;</span><span>({{results.hex[1]}} / (256 ^ 2))</span></div>
+      <div><span>+&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{{Number(results.hex[2] / (256 * 256 * 256)).toFixed(9)}}&nbsp;&nbsp;&nbsp;&nbsp;</span><span>({{results.hex[2]}} / (256 ^ 3))</span></div>
+      <div><span>+&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{{Number(results.hex[3] / (256 * 256 * 256 * 256)).toFixed(9)}}&nbsp;&nbsp;&nbsp;&nbsp;</span><span>({{results.hex[3]}} / (256 ^ 4))</span></div>
+      <div><span>=&nbsp;&nbsp;&nbsp;&nbsp;</span><span>{{(numResult * 10000).toFixed(6)}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>(* 10000)</div>
+      <div><span>=&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="text-success">{{Math.floor(numResult * 10000)}}</span></div>
+    </div>
+  </form>
+</div>
+</body>
 <script>
 let qs = tools.queryString();
 var app = new Vue({
@@ -50,16 +107,13 @@ var app = new Vue({
       return res
     },
     numResult () {
-      return parseInt(slideWindowNumber(this.result_hash_list, 10000));
-    },
-    // numResult () {
-    //   let num = 0
-    //   let list = this.results.hex
-    //   for (let i = 0; i < 4; i++) {
-    //     num += list[i] / Math.pow(256, (i + 1))
-    //   }
-    //   return num.toFixed(9)
-    // }
+      let num = 0
+      let list = this.results.hex
+      for (let i = 0; i < 4; i++) {
+        num += list[i] / Math.pow(256, (i + 1))
+      }
+      return num.toFixed(9)
+    }
   },
   watch: {
     'this.numResult'() {
@@ -85,4 +139,4 @@ var app = new Vue({
   }
 });
 </script>
-</body></html>
+</html>

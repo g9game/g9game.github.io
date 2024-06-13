@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mines verify</title>
+    <link rel="stylesheet" href="./lib/main.css">
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <script src="./lib/GoogleAnalytics.js"></script>
+    <script src="./lib/crypto-js.js"></script>
+    <script src="./lib/tools.js"></script>
+    <script src="./lib/vue3.js"></script>
+    <style>
+        [v-cloak] {
+            display: none !important;
+        }
+
+
+        .result {
+            /* margin: 2px; */
+            padding: 10px;
+            width: 80px;
+            height: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="main" v-cloak>
+        <h1 class="text-center pb-5">Mines verify</h1>
+        <hr>
+        <form class="py-5">
+            <h2 class="text-center">Input</h2>
+            <div class="form-group">
+                <input :value="client_seed" @change="client_seed = $event.target.value" class="form-control"
+                    placeholder="Client Seed">
+            </div>
+            <div class="form-group">
+                <input :value="server_seed" @change="server_seed = $event.target.value" class="form-control"
+                    placeholder="Server Seed">
+            </div>
+            <div class="form-group">
+                <input :value="nonce" @change="nonce = $event.target.value" class="form-control" placeholder="Nonce">
+            </div>
+            <div class="form-group">
+                <input :value="minesNum" @change="minesNum = $event.target.value" class="form-control"
+                    placeholder="Mines num">
+            </div>
+        </form>
+        <h2 class="text-center">Result</h2>
+        <div class="text-center">
+            <div v-for="res in showResult">
+                <span class="result" v-for="r in res"> {{getResult(result,r) ?"💣" : "💎"}}</span>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@3.0.11/dist/vue.global.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@3.0.11/dist/vue.global.prod.js"></script> -->
+    <script>
+        const { createApp, reactive, toRefs, ref, onMounted, watch } = Vue;
+
+        const app = createApp({
+            setup() {
+                const RTP = 99.0;
+                const CardsNum = 25;
+
+                const client_seed = ref("") //dfb8264f-3b00-4c17-b3e4-2a99928b90de
+                const server_seed = ref("") //8cd4ab3d0aea43925e2a60273c615b0ac1afefe3dccdf3775751cdf6c1c071fa
+                const nonce = ref(0)
+                const minesNum = ref(0)
+                const result = ref(0)
+                const showResult = ref([[0,1, 2, 3, 4], [5,6, 7, 8, 9], [10,11, 12, 13, 14], [15,16, 17, 18, 19], [20,21, 22, 23, 24]])
+                onMounted(() => {
+                    let qs = tools.queryString();
+                    let c = qs.c || ""
+                    if (c != "") {
+                        client_seed.value = c
+                    }
+                    let s = qs.s || ""
+                    if (s != "") {
+                        server_seed.value = s
+                    }
+                    let n = qs.n || 0
+                    if (n) {
+                        nonce.value = n
+                    }
+                    let num = qs.num || 0
+                    if (num > 0) {
+                        minesNum.value = num
+                    }
+                    // let res = minesGetResult(s, c, n, num)
+                    // result.value = res
+                    // console.log(result.value)
+                })
+
+                const minesGetResult = (serverSeed, clientSeed, nonce, minesNumber) => {
+                    if(minesNumber <= 0 || minesNumber >=25) {
+                        return
+                    }
+                    let nonceIncrease = 0;
+                    const chars = 2;
+                    const maxNumber = Math.floor(Math.pow(16, chars) / CardsNum) * CardsNum;
+                    const finalIndexes = [];
+                    const finalIndexesMap = new Set();
+                    let done = false;
+
+                    while (!done) {
+
+                        const hmac = CryptoJS.HmacSHA512(`${clientSeed},${nonce}-${nonceIncrease}`, serverSeed);
+                        const seed = hmac.toString(CryptoJS.enc.Hex);
+
+                        for (let i = 0; i < Math.floor(128 / chars); i++) {
+
+                            const tmp = seed.substring(i * chars, (i * chars) + chars);
+                            const number = parseInt(tmp, 16);
+
+                            if (!isNaN(number) && number < maxNumber) {
+                                const remainder = number % CardsNum;
+
+                                if (!finalIndexesMap.has(remainder)) {
+                                    finalIndexes.push(remainder);
+                                    finalIndexesMap.add(remainder);
+                                    if (finalIndexes.length == minesNumber) {
+                                        done = true;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        nonceIncrease++;
+
+                    }
+
+                    finalIndexes.sort((a, b) => a - b);
+
+                    const cards = [];
+                    for (let i = 0; i < CardsNum; i++) {
+                        cards.push(i);
+                    }
+
+                    // const shuffledCards = shuffle(cards);
+
+                    return finalIndexes;
+                }
+
+                const shuffle = (array) => {
+                    for (let i = array.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [array[i], array[j]] = [array[j], array[i]];
+                    }
+                    return array;
+                }
+
+                const getResult = (arr, num) => {
+                    if(!arr) {
+                        return
+                    }
+                    return arr.some(e => e==num)
+                }
+
+                watch(() => [nonce.value, minesNum.value], async ([newNonce, newMinesNum], [oldNonce, oldMinesNum]) => {
+                    if(newMinesNum== 0) {
+                        return
+                    }
+                    const res = minesGetResult(server_seed.value, client_seed.value, newNonce, newMinesNum)
+                    result.value = res
+                    // console.log(result.value)
+                })
+
+                return {
+
+                    client_seed,
+                    server_seed,
+                    nonce,
+                    minesNum,
+                    showResult,
+                    result,
+                    minesGetResult,
+                    shuffle,
+                    getResult
+                }
+            }
+        });
+        app.mount("#app");
+    </script>
+</body>
+
+</html>

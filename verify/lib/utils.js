@@ -7,5 +7,3 @@ function slideWindowNumber(hash, events) {
     num = Number(num) * MAX_BORDER;
     return num * events;
 }
-
-
