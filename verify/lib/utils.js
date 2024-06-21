@@ -7,3 +7,20 @@ function slideWindowNumber(hash, events) {
     num = Number(num) * MAX_BORDER;
     return num * events;
 }
+
+
+
+
+function creatMap(n = 16, m='x') {
+    const matrix = [];
+    for (let i = 0; i < n; i++) {
+        let arr = []
+        for (let j = 3 + i; j--;) {
+            if (arr.length == 0) {
+            }
+            arr.push(m)
+        }
+        matrix.push(arr)
+    }
+    return matrix;
+}
