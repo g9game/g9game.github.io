@@ -26,6 +26,9 @@
     left: -11px;
     top: 20px;
   }
+  .right.path::after{
+    left: 21px;
+  }
   .scale{transform-origin: top;}
   @media (min-width: 375px) { .scale{scale:0.6} }
   @media (min-width: 414px) { .scale{scale:0.7} }
@@ -164,7 +167,7 @@
     <div style="overflow-x: auto;padding-bottom: 100px;">
       <div class="scale">
         <div v-for="(list,i) in mapData" style="display: flex;justify-content: center;">
-          <span v-for="(item,j) in list" style="padding: 5px;" :class="{'path':item===0, 'last':i===mapData.length-1 && j>0}" :data-text="j-1" >⭕</span>
+          <span v-for="(item,j) in list" style="padding: 5px;" :class="{'path':item===0, 'last':i===mapData.length-1 && j>0, 'left':pathNums[i]===0,'right':pathNums[i]===1 }" :data-text="j-1" >⭕</span>
         </div>
       </div>
     </div>
@@ -260,7 +263,7 @@
           return Rows
         },
         result_i(){
-          return this.mapData[this.mapData.length-1].indexOf(0) - 1
+          return this.mapData[this.mapData.length-1].indexOf(0)
         }
       },
       watch: {
