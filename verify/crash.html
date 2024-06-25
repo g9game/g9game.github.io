@@ -12,7 +12,8 @@
   <link rel="stylesheet" type="text/css" href="./lib//font-awesome.css">
   <script type="text/javascript" src="./lib/crypto-js.js"></script>
   <link rel="stylesheet" type="text/css" href="./lib/bulma.css">
-
+  <script src="./lib/tools.js"></script>
+  
   <style>
     *,
     body,
@@ -185,6 +186,9 @@
     </div>
   </section>
   <script type="text/javascript">
+    let qs = tools.queryString();
+    $('#game_hash_input').val(qs.h||'');
+
     var isVerifying = false;
     $('#game_verify_submit').on('click', () => {
       if (isVerifying) return;
@@ -222,7 +226,7 @@
     const gameResult = (seed, salt) => {
       const nBits = 52; // number of most significant bits to use
 
-      // 1. HMAC_SHA256(message=seed, key=salt)  
+      // 1. HMAC_SHA256(message=seed, key=salt)
       if (salt) {
         const hmac = CryptoJS.HmacSHA256(CryptoJS.enc.Hex.parse(seed), salt);
         seed = hmac.toString(CryptoJS.enc.Hex);
