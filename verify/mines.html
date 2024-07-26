@@ -94,8 +94,8 @@
 
           const client_seed = ref("");
           const server_seed = ref("");
-          const nonce = ref(1);
-          const minesNum = ref(4);
+          const nonce = ref("");
+          const minesNum = ref("");
           const result = ref(0);
           const showResult = ref([
             [0, 1, 2, 3, 4],
@@ -114,11 +114,11 @@
             if (s != "") {
               server_seed.value = s;
             }
-            let n = qs.n || 0;
+            let n = qs.n || "";
             if (n) {
               nonce.value = n;
             }
-            let num = qs.num || 0;
+            let num = qs.num || "";
             if (num > 0) {
               minesNum.value = num;
             }

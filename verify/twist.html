@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Slots verify</title>
+  <title>Twist verify</title>
   <link rel="stylesheet" href="./lib/main.css">
   <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
   <script src="./lib/vue.min.js"></script>
@@ -332,15 +332,15 @@
     str = String(str);
     return '000'.substring(0, 3-str.length)+str
   }
-  var layerString = formatLayerString(qs.l || '212');
+  var layerString = formatLayerString(qs.l || '');
   var app = new Vue({
     el: '#app',
     data: {
-      client_seed: qs.c || 'hAZQGbDnxFZnNFbZEah',
-      server_seed: qs.s || '6d4b946319d45695203dd55251e48df87895f6b94e23f2b359fbbc909791a334',
+      client_seed: qs.c || '',
+      server_seed: qs.s || '',
       server_seed_hash: qs.h || '',
       layers: [parseInt(layerString[0]), parseInt(layerString[1]), parseInt(layerString[2])],
-      nonce: parseInt(qs.n) || 120,
+      nonce: parseInt(qs.n) || "",
       luckyIndex: -1,
       layerData: data,
     },

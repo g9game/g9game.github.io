@@ -91,7 +91,7 @@
           ];
           const client_seed = ref("");
           const server_seed = ref("");
-          const nonce = ref("88");
+          const nonce = ref("");
           const result = ref([]);
           onMounted(() => {
             let qs = tools.queryString();
@@ -99,9 +99,7 @@
             if (c != "") {
               client_seed.value = c;
             }
-            let s =
-              qs.s ||
-              "";
+            let s = qs.s || "";
             if (s != "") {
               server_seed.value = s;
             }
@@ -109,20 +107,21 @@
             if (n) {
               nonce.value = n;
             }
-
-            // let res = minesGetResult(s, c, n, num)
-            // result.value = res
             const hash = resultHash();
-            // console.log(hash);
             const nums = createNums(hash);
-            // console.log(nums);
             const res = kenoGetResult(nums);
-            // console.log(res);
             result.value = res;
-            // console.log(result.value);
+          
           });
 
           const resultHash = () => {
+            if (
+              client_seed.value == "" ||
+              server_seed.value == "" ||
+              nonce.value == ""
+            ) {
+              return;
+            }
             const hmac = CryptoJS.HmacSHA512(
               `${client_seed.value}:${nonce.value}`,
               server_seed.value
@@ -131,6 +130,9 @@
           };
 
           const createNums = (hash) => {
+            if (!hash) {
+              return;
+            }
             const nums = [];
             let h = CryptoJS.SHA256(hash).toString(CryptoJS.enc.Hex);
             allNums.forEach((c) => {
@@ -149,6 +151,9 @@
             return nums;
           };
           const kenoGetResult = (nums) => {
+            if (!nums) {
+              return;
+            }
             let result = [];
 
             for (const num of nums.slice(0, 10)) {
@@ -165,13 +170,9 @@
               [old_nonce, old_client_seed, old_server_seed]
             ) => {
               const hash = resultHash();
-              // console.log(hash);
               const nums = createNums(hash);
-              // console.log(nums);
               const res = kenoGetResult(nums);
-              // console.log(res);
               result.value = res;
-            //   console.log(result.value);
             }
           );
 
